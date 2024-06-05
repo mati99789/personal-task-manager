@@ -1,17 +1,17 @@
-import model.Priority;
-import model.Status;
+import enums.Priority;
+import enums.Status;
 import model.Task;
+import model.TaskList;
 
 import java.time.LocalDate;
 
 public class Main {
 	public static void main(String[] args) {
-		Task task = new Task("Complete Java Task", "Finish Exercise 1 of Java course", LocalDate.of(2024, 6,10), Priority.HIGH, Status.TODO);
+		TaskList taskList = new TaskList();
 
-		System.out.println(task);
+		taskList.addTask(new Task("Finish Java Basics", LocalDate.of(2024, 6, 15), Priority.HIGH, Status.IN_PROGRESS));
+		taskList.addTask(new Task("Read Design Patterns", LocalDate.of(2024, 7, 1), Priority.MEDIUM, Status.TODO));
+		taskList.addTask(new Task("Set Up GitHub", LocalDate.of(2024, 6, 1), Priority.HIGH, Status.TODO));
 
-		task.setStatus(Status.IN_PROGRESS);
-
-		System.out.println("Update status: " + task.getStatus());
 	}
 }

@@ -1,5 +1,8 @@
 package model;
 
+import enums.Priority;
+import enums.Status;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -14,25 +17,44 @@ public class Task {
 	private String description;
 	private LocalDate dueDate;
 	private Priority priority;
-	private Status Status;
+	private Status status;
+
 
 	public Task() {
 	}
 
 	public Task(String title, String description, LocalDate dueDate) {
-		this(title, description, dueDate, Priority.MEDIUM, model.Status.TODO);
+		this(title, description, dueDate, Priority.MEDIUM, enums.Status.TODO);
 		this.title = title;
 		this.description = description;
 		this.dueDate = dueDate;
 	}
 
-	public Task(String title, String description, LocalDate dueDate, Priority priority, model.Status status) {
+	/**
+	 * Creates a new task.
+	 * @param title The task's title
+	 * @param dueDate When the task is due
+	 * @param priority The task's importance
+	 * @param status The task's current state
+	 */
+	public Task(String title, String description, LocalDate dueDate, Priority priority, enums.Status status) {
 		this.id = UUID.randomUUID();
 		this.title = title;
 		this.description = description;
 		this.dueDate = dueDate;
 		this.priority = priority;
-		Status = status;
+		this.status = status;
+	}
+
+	public Task(String title, LocalDate dueDate, Priority priority, Status status) {
+		this.title = title;
+		this.dueDate = dueDate;
+		this.priority = priority;
+		this.status = status;
+	}
+
+	public boolean isOverdue() {
+		return status != Status.DONE && dueDate.isBefore(LocalDate.now());
 	}
 
 	public UUID getId() {
@@ -74,12 +96,12 @@ public class Task {
 		this.priority = priority;
 	}
 
-	public model.Status getStatus() {
-		return Status;
+	public enums.Status getStatus() {
+		return status;
 	}
 
-	public void setStatus(model.Status status) {
-		Status = status;
+	public void setStatus(enums.Status status) {
+		this.status = status;
 	}
 
 
@@ -91,7 +113,7 @@ public class Task {
 				", description='" + description + '\'' +
 				", dueDate=" + dueDate +
 				", priority=" + priority +
-				", Status=" + Status +
+				", status=" + status +
 				'}';
 	}
 }
