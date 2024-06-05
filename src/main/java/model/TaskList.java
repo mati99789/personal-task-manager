@@ -14,7 +14,7 @@ public class TaskList {
 	}
 
 	public void addTask(Task task) {
-		if(task != null) {
+		if(task == null) {
 			throw new IllegalArgumentException("Task cannot be null");
 		}
 

@@ -30,27 +30,17 @@ public class Task {
 		this.dueDate = dueDate;
 	}
 
-	/**
-	 * Creates a new task.
-	 * @param title The task's title
-	 * @param dueDate When the task is due
-	 * @param priority The task's importance
-	 * @param status The task's current state
-	 */
-	public Task(String title, String description, LocalDate dueDate, Priority priority, enums.Status status) {
+	public Task(String title, LocalDate dueDate, Priority priority, enums.Status status) {
 		this.id = UUID.randomUUID();
 		this.title = title;
-		this.description = description;
 		this.dueDate = dueDate;
 		this.priority = priority;
 		this.status = status;
 	}
 
-	public Task(String title, LocalDate dueDate, Priority priority, Status status) {
-		this.title = title;
-		this.dueDate = dueDate;
-		this.priority = priority;
-		this.status = status;
+	public Task(String title, String description, LocalDate dueDate, Priority priority, Status status) {
+		this(title, dueDate, priority, status);
+		this.description = description;
 	}
 
 	public boolean isOverdue() {
