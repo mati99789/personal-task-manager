@@ -1,7 +1,7 @@
 import enums.Priority;
 import enums.Status;
 import model.Task;
-import model.TaskList;
+import repository.TaskList;
 
 import java.time.LocalDate;
 import java.util.UUID;

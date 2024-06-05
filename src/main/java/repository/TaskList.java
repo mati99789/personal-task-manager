@@ -1,13 +1,14 @@
-package model;
+package repository;
 
 import enums.Priority;
 import enums.Status;
+import model.Task;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class TaskList {
-	private List<Task> tasks;
+	private final List<Task> tasks;
 
 	public TaskList() {
 		this.tasks = new ArrayList<>();
@@ -79,5 +80,16 @@ public class TaskList {
 	public Map<Status, Long> getTaskCountByStatus() {
 		return tasks.stream().collect(Collectors.groupingBy(Task::getStatus, Collectors.counting()));
 	}
+
+	public Task getTaskById(UUID id) {
+		for(Task task : tasks) {
+			if(task.getId().equals(id)) {
+				return task;
+			}
+		}
+		return null;
+	}
+
+
 
 }
